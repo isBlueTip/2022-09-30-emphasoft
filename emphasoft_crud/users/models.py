@@ -1,8 +1,5 @@
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-ADMIN = 'admin'
-USER = 'user'
 
 
 class User(AbstractUser):
@@ -11,6 +8,7 @@ class User(AbstractUser):
         max_length=150,
         # min_length=1,  # TODO implement via min_length validator
         # TODO pattern: ^[\w.@+-]+$
+        unique=True,
     )
     first_name = models.CharField(
         'First name',
@@ -40,8 +38,8 @@ class User(AbstractUser):
 
     class Meta:
         ordering = ['-id']
-        # verbose_name = 'пользователь'
-        # verbose_name_plural = 'пользователи'
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
 
     def __str__(self):
         if self.get_full_name():
