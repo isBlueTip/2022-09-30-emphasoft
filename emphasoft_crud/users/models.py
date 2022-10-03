@@ -6,8 +6,6 @@ class User(AbstractUser):
     username = models.CharField(
         'Username',
         max_length=150,
-        # min_length=1,  # TODO implement via min_length validator
-        # TODO pattern: ^[\w.@+-]+$
         unique=True,
     )
     first_name = models.CharField(
@@ -20,19 +18,7 @@ class User(AbstractUser):
     )
     password = models.CharField(
         'Password',
-        # TODO pattern: ^(?=.*[A-Z])(?=.*\d).{8,}$
         max_length=150,
-        # min_length=1,  # TODO implement via min_length validator
-        blank=False,
-    )
-    is_active = models.BooleanField(  # TODO how to inherit attributes from parent class?
-        'Active',
-        default=True,
-        blank=False,
-    )
-    is_superuser = models.BooleanField(
-        'Superuser status',
-        default=False,
         blank=False,
     )
 
