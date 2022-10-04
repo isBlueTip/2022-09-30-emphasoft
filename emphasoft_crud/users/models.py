@@ -23,7 +23,7 @@ class User(AbstractUser):
     )
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['-username']
         verbose_name = 'пользователь'
         verbose_name_plural = 'пользователи'
 
