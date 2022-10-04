@@ -25,10 +25,12 @@ SECRET_KEY = 'django-insecure-)qnh)k05_p*9nxbj$i8tz36g#^*=!tpoo_4z=-56rf7-m0yzi^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+
+AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    # Own
+    'api.apps.ApiConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +108,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
