@@ -1,20 +1,11 @@
-# import logging
-
-from api.users_serializers import (ReadOnlyUserSerializer, WriteOnlyUserSerializer)
-# from loggers import formatter, logger
-from rest_framework import status, viewsets, mixins
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password
+from rest_framework import mixins, status, viewsets
+from rest_framework.response import Response
 
-from users.models import User
 from api.permissions import CreateOrSelfOrAdminOrReadOnly
-
-# LOG_NAME = 'users_views.log'
-#
-# file_handler = logging.FileHandler(LOG_NAME)
-# file_handler.setFormatter(formatter)
-# logger.addHandler(file_handler)
+from api.users_serializers import (ReadOnlyUserSerializer,
+                                   WriteOnlyUserSerializer)
+from users.models import User
 
 
 class UserViewSet(viewsets.GenericViewSet,
@@ -33,10 +24,7 @@ class UserViewSet(viewsets.GenericViewSet,
 
     queryset = User.objects.all()
     permission_classes = [
-        # AllowAny,
-        # IsAuthenticatedOrReadOnly,
         CreateOrSelfOrAdminOrReadOnly,
-        # IsAuthenticated,
     ]
 
     def create(self, request, *args, **kwargs):
@@ -56,8 +44,6 @@ class UserViewSet(viewsets.GenericViewSet,
         self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
-            # If 'prefetch_related' has been applied to a queryset, we need to
-            # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)

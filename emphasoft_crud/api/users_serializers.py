@@ -1,15 +1,8 @@
-# import logging
-from django.contrib.auth.password_validation import validate_password
-from rest_framework import serializers
-# from .loggers import logger, formatter
-from users.models import User
 import re
 
-# LOG_NAME = 'serializers.log'
-#
-# file_handler = logging.FileHandler(LOG_NAME)
-# file_handler.setFormatter(formatter)
-# logger.addHandler(file_handler)
+from rest_framework import serializers
+
+from users.models import User
 
 
 class ReadOnlyUserSerializer(serializers.ModelSerializer):
