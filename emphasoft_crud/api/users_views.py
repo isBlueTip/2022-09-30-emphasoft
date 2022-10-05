@@ -1,6 +1,4 @@
-from django.contrib.auth.hashers import make_password
 from rest_framework import mixins, status, viewsets
-from rest_framework.response import Response
 
 from api.permissions import CreateOrSelfOrAdminOrReadOnly
 from api.users_serializers import (ReadOnlyUserSerializer,
