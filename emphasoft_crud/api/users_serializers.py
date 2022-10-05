@@ -3,6 +3,7 @@ import re
 from rest_framework import serializers
 
 from users.models import User
+from django.contrib.auth.hashers import make_password
 
 
 class ReadOnlyUserSerializer(serializers.ModelSerializer):
@@ -50,3 +51,11 @@ class WriteOnlyUserSerializer(serializers.ModelSerializer):
                 'Password must be longer than 8 symbols'
                 ' and include lower-case and upper-case letter, digits and special characters')
         return value
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().update(instance, validated_data)
