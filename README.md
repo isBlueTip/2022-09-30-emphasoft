@@ -9,6 +9,9 @@ API для менеджмента пользователей с авторизa�
 В папке склонированного репозитория выполните:
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 cd emphasoft_crud
 python3 manage.py makemigrations
 python3 manage.py migrate
