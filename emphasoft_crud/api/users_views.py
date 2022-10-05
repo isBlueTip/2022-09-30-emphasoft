@@ -18,7 +18,7 @@ class UserViewSet(viewsets.GenericViewSet,
     """Viewset to work with User model."""
 
     def get_serializer_class(self):
-        if self.action == 'retrieve' or self.action == 'list':
+        if self.action in ['retrieve', 'list']:
             return ReadOnlyUserSerializer
         return WriteOnlyUserSerializer
 
