@@ -2,22 +2,19 @@
 
 ## Описание проекта
 
-API для менеджмента пользователей с авторизaцией по токену
+API для менеджмента пользователей с авторизацией по токену с развёртывание в docker-compose
 
 ## Установка проекта локально
 
 В папке склонированного репозитория выполните:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cd emphasoft_crud
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser --email root@root.com --username root -v 3
+docker-compose up -d --build
+sudo docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py makemigrations
+sudo docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py migrate
+docker exec -it 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py createsuperuser --email admin@admin.com --username admin -v 3
 ```
-Задайте пароль для суперпользователя. Логин суперпользователя - root.
+Задайте пароль для суперпользователя. Логин суперпользователя - admin.
 ```bash
 python3 manage.py runserver
 ```
@@ -25,11 +22,11 @@ python3 manage.py runserver
 
 ## Документация API
 
-доступна по адресу http://localhost:8000/api/v1/schema/swagger-ui/ при развёрнутом проекте
+доступна по адресу http://localhost/api/v1/schema/swagger-ui/ при развёрнутом проекте
 
 ## Стек
 
-Django, Django REST framework, SQLite, Swagger
+Django, Django REST framework, PostgreSQL, Docker-compose, Swagger
 
 ## Автор
 
