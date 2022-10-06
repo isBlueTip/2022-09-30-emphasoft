@@ -2,7 +2,7 @@
 
 ## Описание проекта
 
-API для менеджмента пользователей с авторизацией по токену с развёртывание в docker-compose
+API для менеджмента пользователей с авторизацией по токену с развёртыванием в docker-compose
 
 ## Установка проекта локально
 
@@ -10,15 +10,27 @@ API для менеджмента пользователей с авториза
 
 ```bash
 docker-compose up -d --build
-sudo docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py makemigrations
-sudo docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py migrate
+docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py collectstatic --noinput
+docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py makemigrations
+docker exec 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py migrate
 docker exec -it 09-22-emphasoft-crud_emphasoft-crud_1 python3 manage.py createsuperuser --email admin@admin.com --username admin -v 3
 ```
 Задайте пароль для суперпользователя. Логин суперпользователя - admin.
-```bash
-python3 manage.py runserver
-```
 Для проверки работоспособности, перейдите на localhost/admin
+
+## Пример .env файла
+
+```
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=pass
+DB_HOST=db
+DB_PORT=5432
+SECRET_KEY=p&l%slhtyn^##a1)ilz@4zqj=rq&agdol^##zglmlkmklmewf16w5165^(*U)(&%3dkm9(vs
+```
+
+Файл должен находиться в корне проекта
 
 ## Документация API
 
@@ -26,7 +38,7 @@ python3 manage.py runserver
 
 ## Стек
 
-Django, Django REST framework, PostgreSQL, Docker-compose, Swagger
+Django, Django REST framework, Docker-compose, Nginx, PostgreSQL, Swagger
 
 ## Автор
 
