@@ -7,6 +7,7 @@ class User(AbstractUser):
         'Username',
         max_length=150,
         unique=True,
+        db_index=True,
     )
     first_name = models.CharField(
         'First name',
