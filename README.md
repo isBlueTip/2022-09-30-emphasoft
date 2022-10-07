@@ -28,6 +28,7 @@ POSTGRES_PASSWORD=pass
 DB_HOST=db
 DB_PORT=5432
 SECRET_KEY=p&l%slhtyn^##a1)ilz@4zqj=rq&agdol^##zglmlkmklmewf16w5165^(*U)(&%3dkm9(vs
+DEBUG=False
 ```
 
 Файл должен находиться в корне проекта
