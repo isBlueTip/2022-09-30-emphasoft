@@ -19,6 +19,7 @@ class ReadOnlyUserSerializer(serializers.ModelSerializer):
             'last_login',
             'is_superuser',
         ]
+        read_only_fields = fields
 
 
 class WriteOnlyUserSerializer(serializers.ModelSerializer):
@@ -35,6 +36,7 @@ class WriteOnlyUserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'is_active': {'required': True},
                         'first_name': {'required': False},
                         'last_name': {'required': False},
+                        'password': {'write_only': True},
                         }
 
     def validate_username(self, value):
