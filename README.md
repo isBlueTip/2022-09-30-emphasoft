@@ -1,6 +1,6 @@
 # Проект 09-22-emphasoft-CRUD
 
-## Описание проекта
+## Описание
 
 API для менеджмента пользователей с авторизацией по токену с развёртыванием в docker-compose
 
@@ -46,5 +46,5 @@ Django, Django REST framework, Docker-compose, Nginx, PostgreSQL, Swagger
 Семён Егоров  
 
 [LinkedIn](https://www.linkedin.com/in/simonegorov/)  
-[Email](rhinorofl@gmail.com)  
+[Email](simon.egorov.job@gmail.com)  
 [Telegram](https://t.me/SamePersoon)
